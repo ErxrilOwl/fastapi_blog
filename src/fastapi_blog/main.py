@@ -5,7 +5,7 @@ from fastapi.staticfiles import StaticFiles
 # from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from starlette.exceptions import HTTPException as StarletteHTTPException
-from fastapi_blog.schemas import PostCreate, PostResponse
+from schemas import PostCreate, PostResponse
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
