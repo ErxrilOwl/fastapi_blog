@@ -13,17 +13,13 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 import fastapi_blog.models as models
-from fastapi_blog.database import Base, engine, get_db
+from fastapi_blog.database import engine, get_db
 from fastapi_blog.routers import posts, users
 from fastapi_blog.config import settings
 
 
-
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
-    # Startup
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
 
     yield
 
