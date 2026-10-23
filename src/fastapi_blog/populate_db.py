@@ -5,10 +5,10 @@ from pathlib import Path
 import httpx
 from sqlalchemy import delete, select, update
 
-import models
-from database import AsyncSessionLocal, engine
-from image_utils import PROFILE_PICS_DIR
-from main import app
+import fastapi_blog.models as models
+from fastapi_blog.database import AsyncSessionLocal, engine
+from fastapi_blog.image_utils import PROFILE_PICS_DIR
+from fastapi_blog.main import app
 
 POPULATE_IMAGES_DIR = Path("populate_images")
 
@@ -381,4 +381,9 @@ async def populate() -> None:
 
 
 if __name__ == "__main__":
+    import sys
+    
+    if sys.platform == "win32":
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+        
     asyncio.run(populate())
