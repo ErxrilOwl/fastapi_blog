@@ -7,3 +7,12 @@ docker run -d --name postgres-blog -p 5432:5432 -e POSTGRES_PASSWORD=secret -v p
 docker exec -it postgres-blog psql -U postgres -c "CREATE USER bloguser WITH PASSWORD 'blogpass';"
 docker exec -it postgres-blog psql -U postgres -c "CREATE DATABASE blog OWNER bloguser;"
 ```
+
+
+### Common Alembic Command
+```sh
+uv run alembic init -t async alembic
+uv run alembic revision --autogenerate -m "initial schema"
+uv run alembic upgrade head
+uv run alembic downgrade -1
+```

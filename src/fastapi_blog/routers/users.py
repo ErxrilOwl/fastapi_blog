@@ -36,6 +36,8 @@ from fastapi_blog.schemas import (
     ResetPasswordRequest
 )
 
+from botocore.exceptions import ClientError
+
 router = APIRouter()
 
 
