@@ -1,4 +1,6 @@
 import os 
+import asyncio
+import sys
 from collections.abc import AsyncGenerator
 
 os.environ["DATABASE_URL"] = (
@@ -32,6 +34,8 @@ pytest_plugins = ["anyio"]
 
 @pytest.fixture(scope="session")
 def anyio_backend():
+    if sys.platform == "win32":
+        return ("asyncio", {"loop_factory": asyncio.SelectorEventLoop})
     return "asyncio"
 
 
